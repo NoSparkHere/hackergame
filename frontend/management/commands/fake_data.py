@@ -44,7 +44,7 @@ class Command(BaseCommand):
         )
         # by default when can_update_profile does not exist
         # all nickname will be set to "选手" by User.create
-        root._update(nickname='root')
+        root._update(nickname='root', aff='nowhere')
         root = root.user
         root.is_staff = True
         root.is_superuser = True
@@ -56,7 +56,7 @@ class Command(BaseCommand):
             Context(elevated=True),
             group='other',
         )
-        nobody._update(nickname='nobody')
+        nobody._update(nickname='nobody', aff='nowhere')
         nobody = nobody.user
         nobody.is_staff = False
         nobody.is_superuser = False
