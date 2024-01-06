@@ -57,8 +57,8 @@ class User:
     # TODO: 不要把信息这样扭曲地编码进字符串，而是明确分成三种情况：必填字段集合，选填字段集合（K=0 的部分），高级规则（K>0 的部分），用 json object 表示。
     profile_required = {
         'noscore': ['nickname'],
-        'ljyz': ['nickname', 'name', 'grade', 'sno'],
-        'other': ['nickname', 'aff'],
+        'ljyz': ['nickname', 'aff', 'name', 'grade', 'sno'],
+        'other': ['nickname', 'aff', '/name/school/grade/sno/0'],
         'banned': ['nickname'],
     }
     no_board_groups = ['noscore', 'other', 'banned']
@@ -77,7 +77,7 @@ class User:
         # QQ 号码可能是邮箱的形式，或许还有别的形式，所以用比较宽松的规则
         'qq': RegexValidator(r'^.{5,50}$', 'QQ 号码格式错误'),
         'website': RegexValidator(r'^.{1,300}$', '个人主页/博客格式错误'),
-        'school': RegexValidator(r'^.{1,30}$', '学院格式错误'),
+        'school': RegexValidator(r'^.{1,30}$', '学校格式错误'),
         'grade': RegexValidator(r'^.{1,10}$', '年级格式错误'),
         'major': RegexValidator(r'^.{1,15}$', '专业格式错误'),
         'campus': RegexValidator(r'^.{1,15}$', '校区格式错误'),
