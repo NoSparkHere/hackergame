@@ -75,7 +75,7 @@ TEMPLATES = [
 
 # Email
 EMAIL_SUBJECT_PREFIX = '[Hackergame] '
-ADMINS = [('Hypercube', 'hypercube@0x01.me')]
+ADMINS = []
 DEFAULT_FROM_EMAIL_NAME = 'Hackergame'
 DEFAULT_FROM_EMAIL_EMAIL = 'hackergame@ustclug.org'
 DEFAULT_FROM_EMAIL = f'{DEFAULT_FROM_EMAIL_NAME} <{DEFAULT_FROM_EMAIL_EMAIL}>'
