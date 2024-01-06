@@ -62,7 +62,7 @@ class User:
         'banned': ['nickname'],
     }
     no_board_groups = ['noscore', 'other', 'banned']
-    no_code_groups = ['noscore', 'other', 'banned']
+    # no_code_groups = ['noscore', 'other', 'banned'] # all groups are disabled
     no_score_groups = ['noscore', 'banned']
     subscribers = []
     _validators = {
@@ -408,15 +408,17 @@ class User:
         token = self._obj.token
         return token[: token.find(':') + 11] + '...'
 
+    # Disabled
     @property
     def code(self):
-        if self._context.user.pk != self.pk:
-            User.test_permission(self._context, 'user.full',
-                                 'user.view', f'user.view_{self.group}')
-        if self.group in self.no_code_groups:
-            return None
-        token = self._obj.token
-        return f'{self.pk}-{int(sha256(token.encode()).hexdigest(), 16)%10000:04}'
+        # if self._context.user.pk != self.pk:
+        #     User.test_permission(self._context, 'user.full',
+        #                          'user.view', f'user.view_{self.group}')
+        # if self.group in self.no_code_groups:
+        #     return None
+        # token = self._obj.token
+        # return f'{self.pk}-{int(sha256(token.encode()).hexdigest(), 16)%10000:04}'
+        return None
 
     @property
     def suspicious(self):
