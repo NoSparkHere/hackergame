@@ -58,7 +58,7 @@ class User:
     profile_required = {
         'noscore': ['nickname'],
         'ljyz': ['nickname', 'name', 'grade', 'sno'],
-        'other': ['nickname'],
+        'other': ['nickname', 'aff'],
         'banned': ['nickname'],
     }
     no_board_groups = ['noscore', 'other', 'banned']
