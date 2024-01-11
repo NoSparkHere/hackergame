@@ -12,8 +12,6 @@ class LoginView(BaseLoginView):
         self.provider = request.POST['provider']
         self.group = {
             'debug': 'other',
-            'ustc': 'ustc',
-            'sms': 'other',
         }[self.provider]
         self.identity = request.POST['identity']
         self.login()

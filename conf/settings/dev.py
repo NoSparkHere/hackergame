@@ -56,7 +56,3 @@ LOGGING = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-GOOGLE_APP_ID = ''
-MICROSOFT_APP_ID = ''
-SMS_ACCESS_KEY_ID = ''

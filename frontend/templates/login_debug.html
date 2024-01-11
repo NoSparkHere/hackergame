@@ -6,8 +6,6 @@
         {% csrf_token %}
         <select name="provider" required>
             <option value="debug" selected>调试用户</option>
-            <option value="ustc">中国科学技术大学 GID</option>
-            <option value="sms">手机号码</option>
         </select>
         <input type="text" name="identity" required>
         <button type="submit" class="pure-button pure-button-primary">登录</button>

@@ -12,11 +12,6 @@ INSTALLED_APPS = [
     'server.terms',
     'server.trigger',
     'server.user',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.microsoft',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -34,13 +29,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'frontend.middleware.UserRequestMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
 ]
 
 # Auth
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
+]
+PASSWORD_HASHERS = [
+    "django.contrib.auth.hashers.Argon2PasswordHasher",
 ]
 
 # Database
@@ -88,15 +84,3 @@ USE_L10N = True
 USE_TZ = True
 TIME_ZONE = 'Asia/Shanghai'
 LANGUAGE_CODE = 'zh-Hans'
-
-# allauth
-LOGIN_REDIRECT_URL = 'hub'
-SOCIALACCOUNT_QUERY_EMAIL = True
-SOCIALACCOUNT_ADAPTER = 'frontend.adapters.SocialAccountAdapter'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
-SOCIALACCOUNT_LOGIN_ON_GET = True
-SOCIALACCOUNT_PROVIDERS = {
-    'microsoft': {
-        'TENANT': "consumers"
-    }
-}
