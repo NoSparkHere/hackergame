@@ -1,17 +1,11 @@
 FROM python:3.11
 
-RUN apt-get update && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
 ENV PYTHONUNBUFFERED=1
 WORKDIR /opt/hackergame
 COPY requirements.txt /opt/hackergame/
-RUN pip3 install --upgrade -r requirements.txt
+RUN pip3 install --no-cache-dir --upgrade -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 # Bind project inside instead of copying it
 # to avoid copying credentials inside container
 # COPY ./ /opt/hackergame/
 
-CMD ["/usr/local/bin/uwsgi", "--master", "--ini", "conf/uwsgi.ini", \
-     "--ini", "conf/uwsgi-apps/hackergame-docker.ini", \
-     "--set-placeholder", "appname=hackergame-docker"]
+CMD ["/usr/local/bin/uwsgi", "--ini", "conf/uwsgi-apps/zfun.ini"]

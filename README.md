@@ -1,5 +1,10 @@
 # Hackergame 比赛平台
 
+## ZFun 所作的更改集合
+
+1. 一般情况下，使用 Docker Compose 部署。下面的部署步骤未做更改，实际部署步骤就是简单的 docker compose 应用。
+2. 使用基于 Django Auth 的本地身份系统，扬弃了对 AllAuth 库的依赖。
+
 ## 开发环境部署
 
 1. 创建 venv：`python3 -m venv .venv`。

@@ -1,7 +1,7 @@
 from .base import *
 
 DEBUG = False
-ALLOWED_HOSTS = ['zfun.woooo.tech']
+ALLOWED_HOSTS = ['zfun.woooo.tech', 'localhost']
 MEDIA_ROOT = '/var/opt/hackergame/media'
 STATIC_ROOT = '/var/opt/hackergame/static'
 
@@ -10,10 +10,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'hackergame',
         'USER': 'hackergame',
+        'PASSWORD': 'supersecret',
         'CONN_MAX_AGE': 0,
         'ATOMIC_REQUESTS': True,
         'HOST': 'postgres',
-        'PORT': 6432,
+        'PORT': 5432,
     },
 }
 CACHES = {
