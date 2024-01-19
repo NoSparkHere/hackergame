@@ -54,13 +54,15 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('challenges_dir', type=pathlib.Path)
         parser.add_argument('--dry-run', action='store_true')
+        parser.add_argument('--persist', action='store_true')
 
     # noinspection PyAttributeOutsideInit
     @atomic
-    def handle(self, challenges_dir, dry_run=False, **options):
+    def handle(self, challenges_dir, dry_run=False, persist=False, **options):
         self.challenges_dir = challenges_dir.resolve()
         self.media_dir = pathlib.Path(settings.MEDIA_ROOT)
         self.dry_run = dry_run
+        self.persist = persist
         context = Context(elevated=True)
         old_challenges = {i.name: i for i in Challenge.get_all(context)}
         new_challenges = {}
@@ -90,12 +92,13 @@ class Command(BaseCommand):
                 if not dry_run:
                     Challenge.create(context, **new_challenges[name])
                 self.stdout.write(self.style.SUCCESS('created'))
-        for name in old_challenges:
-            if name not in new_challenges:
-                self.stdout.write(f'{name}: ', ending='')
-                if not dry_run:
-                    old_challenges[name].delete()
-                self.stdout.write(self.style.NOTICE('deleted'))
+        if not persist:
+            for name in old_challenges:
+                if name not in new_challenges:
+                    self.stdout.write(f'{name}: ', ending='')
+                    if not dry_run:
+                        old_challenges[name].delete()
+                    self.stdout.write(self.style.NOTICE('deleted'))
 
     def parse_challenge(self, path):
         # default values
